@@ -5,7 +5,7 @@ Search utilities with RAG quality tracking.
 
 Changes from original:
 - Added timing for RAG retrieval
-- Tracks retrieval quality scores
+- Tracks retrieval quality scores,
 - Logs to Cloud Monitoring
 """
 
