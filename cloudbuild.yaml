@@ -27,7 +27,7 @@ steps:
       - 'gcr.io/$PROJECT_ID/doc-understand:latest'
     id: 'push-image-latest'
 
-  # Step 3: Deploy to Cloud Run
+  # Step 3: Deploy to Cloud Run with secrets
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
@@ -41,7 +41,8 @@ steps:
       - '--cpu=2'
       - '--timeout=300'
       - '--max-instances=10'
-      - '--set-env-vars=USE_GCS_OUTPUT=true'
+      - '--set-env-vars=USE_GCS_OUTPUT=true,AWS_REGION=us-east-1,GCS_BUCKET_NAME=doc-understand-storage,S3_BUCKET=textract-bucket-yash07,GCP_PROJECT_ID=doc-understand'
+      - '--update-secrets=GROQ_API_KEY=GROQ_API_KEY:latest,AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID:latest,AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY:latest'
     id: 'deploy-cloud-run'
 
 # Images to store in Container Registry
